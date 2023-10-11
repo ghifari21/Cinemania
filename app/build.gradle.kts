@@ -1,20 +1,27 @@
+import Config.importCommonDependencies
+import Config.importCommonPlugins
+
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+    id(Plugins.application)
+    id(Plugins.kotlin)
+    kotlin(Plugins.kapt)
 }
+
+importCommonPlugins()
+importCommonDependencies()
 
 android {
     namespace = "com.gosty.cinemania"
-    compileSdk = 34
+    compileSdk = Config.sdk
 
     defaultConfig {
         applicationId = "com.gosty.cinemania"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Config.minSdk
+        targetSdk = Config.sdk
+        versionCode = Config.versionCode
+        versionName = Config.versionName
+
+        buildConfigField("String", "IMAGE_BASE_URL", Config.IMAGE_BASE_URL)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -32,14 +39,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = Config.javaVersion
+        targetCompatibility = Config.javaVersion
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = Config.jvmTarget
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -52,5 +60,38 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.lifecycleRuntimeKtx)
+    implementation(Dependencies.lifecycleViewModelKtx)
+    implementation(Dependencies.coil)
 
+    // Modules
+    implementation(project(Modules.domain))
+
+    // Compose
+    implementation(platform(Dependencies.Compose.compose))
+    implementation(Dependencies.Compose.activity)
+    implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.navigation)
+    implementation(Dependencies.Compose.material3)
+    implementation(Dependencies.Compose.uiGraphics)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    debugImplementation(Dependencies.Compose.uiTooling)
+    debugImplementation(Dependencies.Compose.uiTestManifest)
+    implementation(Dependencies.Hilt.hiltNavigationCompose)
+
+    // Firebase
+    implementation(Dependencies.Firebase.crashlytics)
+    implementation(Dependencies.Firebase.analytics)
+    implementation(Dependencies.Firebase.auth)
+
+    // Test
+    testImplementation(Dependencies.Test.jUnit)
+    androidTestImplementation(Dependencies.Test.extJUnit)
+    androidTestImplementation(platform(Dependencies.Compose.compose))
+    androidTestImplementation(Dependencies.Test.composeTest)
+    androidTestImplementation(Dependencies.Test.espresso)
+}
+
+kapt {
+    correctErrorTypes = true
 }

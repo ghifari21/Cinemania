@@ -33,4 +33,10 @@ object Versions {
         const val extJUnit = "1.1.5"
         const val espresso = "3.5.1"
     }
+
+    object Plugin {
+        const val hilt = "2.48"
+        const val android = "8.1.1"
+        const val kotlin = "1.8.10"
+    }
 }

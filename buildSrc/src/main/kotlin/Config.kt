@@ -6,11 +6,15 @@ import org.gradle.kotlin.dsl.provideDelegate
 
 object Config {
     const val API_BASE_URL = "\"https://api.themoviedb.org/3/\""
+    const val API_TOKEN =
+        "\"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZmIyMzI4ZWI0MmIxOGY5ZjdiMDM3Mzk3MzJhNDlhNSIsInN1YiI6IjYzYTdjNzljYWFlYzcxMDA5NWNjNjZmMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aLtSdTichEJH3blHXKpnJ9lcizD5_EUQyzaESTab978\""
     const val IMAGE_BASE_URL = "\"https://image.tmdb.org/t/p/\""
     const val sdk = 34
     const val minSdk = 24
     val javaVersion = JavaVersion.VERSION_17
     const val jvmTarget = "17"
+    const val versionCode = 1
+    const val versionName = "1.0"
 
     /***
      * This function is to inject common plugins into gradle module
@@ -18,13 +22,11 @@ object Config {
      * @since Oct 5th, 2023
      */
     fun Project.importCommonPlugins() {
-        plugins.apply("kotlin-android")
-        plugins.apply("kotlin-android-extensions")
-        plugins.apply("com.android.application")
-        plugins.apply("org.jetbrains.kotlin")
-        plugins.apply("com.google.gms.google-services")
-        plugins.apply("com.google.firebase.crashlytics")
-        plugins.apply("kotlin-kapt")
+        plugins.apply(Plugins.kotlinAndroid)
+        plugins.apply(Plugins.googleServices)
+        plugins.apply(Plugins.crashlytics)
+        plugins.apply(Plugins.hiltPlugin)
+        plugins.apply(Plugins.parcelize)
     }
 
     /***
