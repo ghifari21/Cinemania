@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cinemania"
 include(":app")
+include(":core:data")
+include(":core:domain")

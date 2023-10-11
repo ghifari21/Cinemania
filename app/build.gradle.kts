@@ -1,18 +1,27 @@
+import Config.importCommonDependencies
+import Config.importCommonPlugins
+
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.application)
+    id(Plugins.kotlin)
+    kotlin(Plugins.kapt)
 }
+
+importCommonPlugins()
+importCommonDependencies()
 
 android {
     namespace = "com.gosty.cinemania"
-    compileSdk = 33
+    compileSdk = Config.sdk
 
     defaultConfig {
         applicationId = "com.gosty.cinemania"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Config.minSdk
+        targetSdk = Config.sdk
+        versionCode = Config.versionCode
+        versionName = Config.versionName
+
+        buildConfigField("String", "IMAGE_BASE_URL", Config.IMAGE_BASE_URL)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -30,14 +39,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.javaVersion
+        targetCompatibility = Config.javaVersion
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -50,20 +60,38 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.lifecycleRuntimeKtx)
+    implementation(Dependencies.lifecycleViewModelKtx)
+    implementation(Dependencies.coil)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // Modules
+    implementation(project(Modules.domain))
+
+    // Compose
+    implementation(platform(Dependencies.Compose.compose))
+    implementation(Dependencies.Compose.activity)
+    implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.navigation)
+    implementation(Dependencies.Compose.material3)
+    implementation(Dependencies.Compose.uiGraphics)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    debugImplementation(Dependencies.Compose.uiTooling)
+    debugImplementation(Dependencies.Compose.uiTestManifest)
+    implementation(Dependencies.Hilt.hiltNavigationCompose)
+
+    // Firebase
+    implementation(Dependencies.Firebase.crashlytics)
+    implementation(Dependencies.Firebase.analytics)
+    implementation(Dependencies.Firebase.auth)
+
+    // Test
+    testImplementation(Dependencies.Test.jUnit)
+    androidTestImplementation(Dependencies.Test.extJUnit)
+    androidTestImplementation(platform(Dependencies.Compose.compose))
+    androidTestImplementation(Dependencies.Test.composeTest)
+    androidTestImplementation(Dependencies.Test.espresso)
+}
+
+kapt {
+    correctErrorTypes = true
 }
