@@ -45,6 +45,7 @@ object Config {
             implementation(Dependencies.appCompat)
             implementation(Dependencies.material)
             implementation(Dependencies.timber)
+            implementation(Dependencies.Paging.runtime)
 
             implementation(Dependencies.Firebase.crashlytics)
             implementation(Dependencies.Firebase.analytics)
