@@ -7,6 +7,9 @@ import androidx.paging.map
 import com.gosty.core.data.api.ApiDataSource
 import com.gosty.core.data.firebase.FirebaseDataSource
 import com.gosty.core.data.utils.DataMapper.toModel
+import com.gosty.core.data.utils.Result
+import com.gosty.core.data.utils.map
+import com.gosty.core.domain.models.tv.TvDetailModel
 import com.gosty.core.domain.models.tv.TvPreviewModel
 import com.gosty.core.domain.repositories.TvRepository
 import kotlinx.coroutines.flow.Flow
@@ -86,4 +89,11 @@ class TvRepositoryImpl @Inject constructor(
                 }
             }
     }
+
+    override fun getTvDetail(id: Long): Flow<Result<TvDetailModel>> =
+        apiDataSource.getTvDetail(id).map { result ->
+            result.map { response ->
+                response.toModel()
+            }
+        }
 }

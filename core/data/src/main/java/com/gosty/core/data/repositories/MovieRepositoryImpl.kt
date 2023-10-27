@@ -7,6 +7,9 @@ import androidx.paging.map
 import com.gosty.core.data.api.ApiDataSource
 import com.gosty.core.data.firebase.FirebaseDataSource
 import com.gosty.core.data.utils.DataMapper.toModel
+import com.gosty.core.data.utils.Result
+import com.gosty.core.data.utils.map
+import com.gosty.core.domain.models.movie.MovieDetailModel
 import com.gosty.core.domain.models.movie.MoviePreviewModel
 import com.gosty.core.domain.repositories.MovieRepository
 import kotlinx.coroutines.flow.Flow
@@ -86,4 +89,11 @@ class MovieRepositoryImpl @Inject constructor(
                 }
             }
     }
+
+    override fun getMovieDetail(id: Long): Flow<Result<MovieDetailModel>> =
+        apiDataSource.getMovieDetail(id).map { result ->
+            result.map { response ->
+                response.toModel()
+            }
+        }
 }
