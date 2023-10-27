@@ -1,6 +1,6 @@
 package com.gosty.core.data.utils
 
-enum class ServicePaging {
+enum class MovieServicePaging {
     NOW_PLAYING,
     POPULAR,
     TOP_RATED,

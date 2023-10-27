@@ -2,6 +2,7 @@ package com.gosty.core.data.di
 
 import com.gosty.core.data.BuildConfig
 import com.gosty.core.data.api.services.MovieService
+import com.gosty.core.data.api.services.TvService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,4 +58,8 @@ class ApiModule {
     @Provides
     fun provideMovieService(retrofit: Retrofit): MovieService =
         retrofit.create(MovieService::class.java)
+
+    @Provides
+    fun provideTvService(retrofit: Retrofit): TvService =
+        retrofit.create(TvService::class.java)
 }

@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class DateResponse(
     @field:SerializedName("maximum")
-    val maximum: String,
+    val maximum: String? = null,
 
     @field:SerializedName("minimum")
-    val minimum: String
+    val minimum: String? = null
 )

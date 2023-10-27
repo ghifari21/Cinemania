@@ -31,7 +31,6 @@ interface MovieService {
 
     @GET("movie/{id}")
     suspend fun getMovieDetail(
-        @Path("id") id: Int,
-        @Query("page") page: Int
+        @Path("id") id: Long
     ): Response<MovieDetailResponse>
 }

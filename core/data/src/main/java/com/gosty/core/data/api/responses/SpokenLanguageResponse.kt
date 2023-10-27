@@ -1,8 +1,8 @@
-package com.gosty.core.data.api.responses.common
+package com.gosty.core.data.api.responses
 
 import com.google.gson.annotations.SerializedName
 
-data class LanguageResponse(
+data class SpokenLanguageResponse(
     @field:SerializedName("english_name")
     val englishName: String? = null,
 

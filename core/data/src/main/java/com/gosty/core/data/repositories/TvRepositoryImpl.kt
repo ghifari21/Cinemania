@@ -7,26 +7,26 @@ import androidx.paging.map
 import com.gosty.core.data.api.ApiDataSource
 import com.gosty.core.data.firebase.FirebaseDataSource
 import com.gosty.core.data.utils.DataMapper.toModel
-import com.gosty.core.domain.models.movie.MoviePreviewModel
-import com.gosty.core.domain.repositories.MovieRepository
+import com.gosty.core.domain.models.tv.TvPreviewModel
+import com.gosty.core.domain.repositories.TvRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MovieRepositoryImpl @Inject constructor(
+class TvRepositoryImpl @Inject constructor(
     private val apiDataSource: ApiDataSource,
     private val firebaseDataSource: FirebaseDataSource
-) : MovieRepository {
-    override fun getMovieNowPlaying(): Flow<PagingData<MoviePreviewModel>> {
+) : TvRepository {
+    override fun getTvAiringToday(): Flow<PagingData<TvPreviewModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
             ),
             pagingSourceFactory = {
-                apiDataSource.getMovieNowPlaying()
+                apiDataSource.getTvAiringToday()
             }
         ).flow
             .map { data ->
@@ -36,14 +36,14 @@ class MovieRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getMoviePopular(): Flow<PagingData<MoviePreviewModel>> {
+    override fun getTvOnTheAir(): Flow<PagingData<TvPreviewModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
             ),
             pagingSourceFactory = {
-                apiDataSource.getMoviePopular()
+                apiDataSource.getTvOnTheAir()
             }
         ).flow
             .map { data ->
@@ -53,14 +53,14 @@ class MovieRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getMovieTopRated(): Flow<PagingData<MoviePreviewModel>> {
+    override fun getTvPopular(): Flow<PagingData<TvPreviewModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
             ),
             pagingSourceFactory = {
-                apiDataSource.getMovieTopRated()
+                apiDataSource.getTvPopular()
             }
         ).flow
             .map { data ->
@@ -70,14 +70,14 @@ class MovieRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getMovieUpcoming(): Flow<PagingData<MoviePreviewModel>> {
+    override fun getTvTopRated(): Flow<PagingData<TvPreviewModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
             ),
             pagingSourceFactory = {
-                apiDataSource.getMovieUpcoming()
+                apiDataSource.getTvTopRated()
             }
         ).flow
             .map { data ->

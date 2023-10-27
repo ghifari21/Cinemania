@@ -3,30 +3,30 @@ package com.gosty.core.data.api.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.gosty.core.data.api.responses.movie.MoviePreviewResponse
-import com.gosty.core.data.api.services.MovieService
-import com.gosty.core.data.utils.MovieServicePaging
+import com.gosty.core.data.api.responses.tv.TvPreviewResponse
+import com.gosty.core.data.api.services.TvService
 import com.gosty.core.data.utils.ResponseErrorException
+import com.gosty.core.data.utils.TvServicePaging
 
-class MoviePagingSource(
-    private val movieService: MovieService,
+class TvPagingSource(
+    private val tvService: TvService,
     private val crashlytics: FirebaseCrashlytics,
-    private val type: MovieServicePaging
-) : PagingSource<Int, MoviePreviewResponse>() {
-    override fun getRefreshKey(state: PagingState<Int, MoviePreviewResponse>): Int? =
+    private val type: TvServicePaging
+) : PagingSource<Int, TvPreviewResponse>() {
+    override fun getRefreshKey(state: PagingState<Int, TvPreviewResponse>): Int? =
         state.anchorPosition?.let { pos ->
             val anchorPage = state.closestPageToPosition(pos)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MoviePreviewResponse> =
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvPreviewResponse> =
         try {
             val position = params.key ?: INITIAL_PAGE_INDEX
             val response = when (type) {
-                MovieServicePaging.NOW_PLAYING -> movieService.getMovieNowPlaying(position)
-                MovieServicePaging.POPULAR -> movieService.getMoviePopular(position)
-                MovieServicePaging.TOP_RATED -> movieService.getMovieTopRated(position)
-                MovieServicePaging.UPCOMING -> movieService.getMovieUpcoming(position)
+                TvServicePaging.AIRING_TODAY -> tvService.getTvAiringToday(position)
+                TvServicePaging.ON_THE_AIR -> tvService.getTvOnTheAir(position)
+                TvServicePaging.POPULAR -> tvService.getTvPopular(position)
+                TvServicePaging.TOP_RATED -> tvService.getTvTopRated(position)
             }
 
             if (response.isSuccessful) {

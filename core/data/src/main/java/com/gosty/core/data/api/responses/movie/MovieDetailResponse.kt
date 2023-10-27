@@ -9,77 +9,77 @@ import com.gosty.core.data.api.responses.common.ProductionCountryResponse
 
 data class MovieDetailResponse(
     @field:SerializedName("adult")
-    val adult: Boolean,
+    val isAdult: Boolean? = null,
 
     @field:SerializedName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String? = null,
 
     @field:SerializedName("belongs_to_collection")
-    val belongsToCollection: CollectionResponse,
+    val belongsToCollection: CollectionResponse? = null,
 
     @field:SerializedName("budget")
-    val budget: Long,
+    val budget: Long? = null,
 
     @field:SerializedName("genres")
-    val genres: List<GenreResponse>,
+    val genres: List<GenreResponse>? = null,
 
     @field:SerializedName("homepage")
-    val homepage: String,
+    val homepage: String? = null,
 
     @field:SerializedName("id")
-    val id: Long,
+    val id: Long? = null,
 
     @field:SerializedName("imdb_id")
-    val imdbId: String,
+    val imdbId: String? = null,
 
     @field:SerializedName("original_language")
-    val originalLanguage: String,
+    val originalLanguage: String? = null,
 
     @field:SerializedName("original_title")
-    val originalTitle: String,
+    val originalTitle: String? = null,
 
     @field:SerializedName("overview")
-    val overview: String,
+    val overview: String? = null,
 
     @field:SerializedName("popularity")
-    val popularity: Double,
+    val popularity: Double? = null,
 
     @field:SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String? = null,
 
     @field:SerializedName("production_companies")
-    val productionCompanies: List<ProductionCompanyResponse>,
+    val productionCompanies: List<ProductionCompanyResponse>? = null,
 
     @field:SerializedName("production_countries")
-    val productionCountries: List<ProductionCountryResponse>,
+    val productionCountries: List<ProductionCountryResponse>? = null,
 
     @field:SerializedName("release_date")
-    val releaseDate: String,
+    val releaseDate: String? = null,
 
     @field:SerializedName("revenue")
-    val revenue: Long,
+    val revenue: Long? = null,
 
     @field:SerializedName("runtime")
-    val runtime: Int,
+    val runtime: Int? = null,
 
     @field:SerializedName("spoken_languages")
-    val spokenLanguages: List<LanguageResponse>,
+    val spokenLanguages: List<LanguageResponse>? = null,
 
     @field:SerializedName("status")
-    val status: String,
+    val status: String? = null,
 
     @field:SerializedName("tagline")
-    val tagline: String,
+    val tagline: String? = null,
 
     @field:SerializedName("title")
-    val title: String,
+    val title: String? = null,
 
     @field:SerializedName("video")
-    val video: Boolean,
+    val video: Boolean? = null,
 
     @field:SerializedName("vote_average")
-    val voteAverage: Double,
+    val voteAverage: Double? = null,
 
     @field:SerializedName("vote_count")
-    val voteCount: Long
+    val voteCount: Long? = null
 )
