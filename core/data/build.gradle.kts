@@ -45,6 +45,8 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.domain))
+
     implementation(Dependencies.Retrofit.retrofit)
     implementation(Dependencies.Retrofit.gson)
     implementation(Dependencies.OkHttp.okHttp)

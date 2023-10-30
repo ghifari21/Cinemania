@@ -7,6 +7,7 @@ object Versions {
     const val okHttp = "5.0.0-alpha.6"
     const val timber = "5.0.1"
     const val coil = "2.3.0"
+    const val paging = "3.2.1"
 
     object Compose {
         const val bom = "2023.09.02"

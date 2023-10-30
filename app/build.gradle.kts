@@ -78,6 +78,7 @@ dependencies {
     debugImplementation(Dependencies.Compose.uiTooling)
     debugImplementation(Dependencies.Compose.uiTestManifest)
     implementation(Dependencies.Hilt.hiltNavigationCompose)
+    implementation(Dependencies.Paging.compose)
 
     // Firebase
     implementation(Dependencies.Firebase.crashlytics)

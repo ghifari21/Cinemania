@@ -51,6 +51,11 @@ object Dependencies {
         const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
     }
 
+    object Paging {
+        const val runtime = "androidx.paging:paging-runtime:${Versions.paging}"
+        const val compose = "androidx.paging:paging-compose:${Versions.paging}"
+    }
+
     object Test {
         const val jUnit = "junit:junit:${Versions.Test.jUnit}"
         const val extJUnit = "androidx.test.ext:junit:${Versions.Test.extJUnit}"
