@@ -22,8 +22,8 @@ class MovieRepositoryImpl @Inject constructor(
     private val apiDataSource: ApiDataSource,
     private val firebaseDataSource: FirebaseDataSource
 ) : MovieRepository {
-    override fun getMovieNowPlaying(): Flow<PagingData<MoviePreviewModel>> {
-        return Pager(
+    override fun getMovieNowPlaying(): Flow<PagingData<MoviePreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -37,10 +37,9 @@ class MovieRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
-    override fun getMoviePopular(): Flow<PagingData<MoviePreviewModel>> {
-        return Pager(
+    override fun getMoviePopular(): Flow<PagingData<MoviePreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -54,10 +53,9 @@ class MovieRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
-    override fun getMovieTopRated(): Flow<PagingData<MoviePreviewModel>> {
-        return Pager(
+    override fun getMovieTopRated(): Flow<PagingData<MoviePreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -71,10 +69,10 @@ class MovieRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
-    override fun getMovieUpcoming(): Flow<PagingData<MoviePreviewModel>> {
-        return Pager(
+
+    override fun getMovieUpcoming(): Flow<PagingData<MoviePreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -88,7 +86,6 @@ class MovieRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
     override fun getMovieDetail(id: Long): Flow<Result<MovieDetailModel>> =
         apiDataSource.getMovieDetail(id).map { result ->

@@ -22,8 +22,8 @@ class TvRepositoryImpl @Inject constructor(
     private val apiDataSource: ApiDataSource,
     private val firebaseDataSource: FirebaseDataSource
 ) : TvRepository {
-    override fun getTvAiringToday(): Flow<PagingData<TvPreviewModel>> {
-        return Pager(
+    override fun getTvAiringToday(): Flow<PagingData<TvPreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -37,10 +37,9 @@ class TvRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
-    override fun getTvOnTheAir(): Flow<PagingData<TvPreviewModel>> {
-        return Pager(
+    override fun getTvOnTheAir(): Flow<PagingData<TvPreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -54,10 +53,9 @@ class TvRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
-    override fun getTvPopular(): Flow<PagingData<TvPreviewModel>> {
-        return Pager(
+    override fun getTvPopular(): Flow<PagingData<TvPreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -71,10 +69,9 @@ class TvRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
-    override fun getTvTopRated(): Flow<PagingData<TvPreviewModel>> {
-        return Pager(
+    override fun getTvTopRated(): Flow<PagingData<TvPreviewModel>> =
+        Pager(
             config = PagingConfig(
                 pageSize = 10,
                 initialLoadSize = 10
@@ -88,7 +85,6 @@ class TvRepositoryImpl @Inject constructor(
                     response.toModel()
                 }
             }
-    }
 
     override fun getTvDetail(id: Long): Flow<Result<TvDetailModel>> =
         apiDataSource.getTvDetail(id).map { result ->
