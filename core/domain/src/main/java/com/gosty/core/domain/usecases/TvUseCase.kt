@@ -1,9 +1,9 @@
 package com.gosty.core.domain.usecases
 
 import androidx.paging.PagingData
-import com.gosty.core.data.utils.Result
-import com.gosty.core.domain.models.tv.TvDetailModel
-import com.gosty.core.domain.models.tv.TvPreviewModel
+import com.gosty.common.utils.Result
+import com.gosty.model.tv.TvDetailModel
+import com.gosty.model.tv.TvPreviewModel
 import kotlinx.coroutines.flow.Flow
 
 interface TvUseCase {
@@ -12,4 +12,8 @@ interface TvUseCase {
     fun getTvPopular(): Flow<PagingData<TvPreviewModel>>
     fun getTvTopRated(): Flow<PagingData<TvPreviewModel>>
     fun getTvDetail(id: Long): Flow<Result<TvDetailModel>>
+    fun getTvAiringTodayHighlight(): Flow<Result<List<TvPreviewModel>>>
+    fun getTvOnTheAirHighlight(): Flow<Result<List<TvPreviewModel>>>
+    fun getTvPopularHighlight(): Flow<Result<List<TvPreviewModel>>>
+    fun getTvTopRatedHighlight(): Flow<Result<List<TvPreviewModel>>>
 }

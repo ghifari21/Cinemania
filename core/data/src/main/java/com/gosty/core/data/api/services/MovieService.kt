@@ -1,8 +1,8 @@
 package com.gosty.core.data.api.services
 
-import com.gosty.core.data.api.responses.general.GeneralResponse
-import com.gosty.core.data.api.responses.movie.MovieDetailResponse
-import com.gosty.core.data.api.responses.movie.MoviePreviewResponse
+import com.gosty.response.general.GeneralResponse
+import com.gosty.response.movie.MovieDetailResponse
+import com.gosty.response.movie.MoviePreviewResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

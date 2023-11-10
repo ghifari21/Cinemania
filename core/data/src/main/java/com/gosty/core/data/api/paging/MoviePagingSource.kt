@@ -3,10 +3,10 @@ package com.gosty.core.data.api.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.gosty.core.data.api.responses.movie.MoviePreviewResponse
 import com.gosty.core.data.api.services.MovieService
 import com.gosty.core.data.utils.MovieServicePaging
 import com.gosty.core.data.utils.ResponseErrorException
+import com.gosty.response.movie.MoviePreviewResponse
 
 class MoviePagingSource(
     private val movieService: MovieService,
@@ -33,9 +33,9 @@ class MoviePagingSource(
                 val responseData = response.body()
 
                 LoadResult.Page(
-                    data = responseData!!.results,
+                    data = responseData?.results ?: emptyList(),
                     prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
-                    nextKey = if (position == responseData.totalPages) null else position + 1
+                    nextKey = if (position == responseData?.totalPages) null else position + 1
                 )
             } else {
                 LoadResult.Error(ResponseErrorException("Code ${response.code()}: ${response.message()}"))

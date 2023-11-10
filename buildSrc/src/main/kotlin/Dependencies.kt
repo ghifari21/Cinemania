@@ -8,6 +8,7 @@ object Dependencies {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
+    const val lottie = "com.airbnb.android:lottie-compose:${Versions.lottie}"
 
     object Compose {
         const val activity = "androidx.activity:activity-compose:${Versions.Compose.activity}"
@@ -20,6 +21,8 @@ object Dependencies {
         const val uiTestManifest = "androidx.compose.ui:ui-test-manifest"
         const val navigation =
             "androidx.navigation:navigation-compose:${Versions.Compose.navigation}"
+        const val icons =
+            "androidx.compose.material:material-icons-extended:${Versions.Compose.compose}"
     }
 
     object Hilt {
