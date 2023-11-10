@@ -8,6 +8,7 @@ object Versions {
     const val timber = "5.0.1"
     const val coil = "2.3.0"
     const val paging = "3.2.1"
+    const val lottie = "6.1.0"
 
     object Compose {
         const val bom = "2023.09.02"

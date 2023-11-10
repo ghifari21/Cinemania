@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="error_state_message">Something went wrong</string>
+    <string name="refresh">Refresh</string>
+    <string name="explore">Explore</string>
+</resources>

@@ -3,10 +3,10 @@ package com.gosty.core.data.api.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.gosty.core.data.api.responses.tv.TvPreviewResponse
 import com.gosty.core.data.api.services.TvService
 import com.gosty.core.data.utils.ResponseErrorException
 import com.gosty.core.data.utils.TvServicePaging
+import com.gosty.response.tv.TvPreviewResponse
 
 class TvPagingSource(
     private val tvService: TvService,
@@ -33,9 +33,9 @@ class TvPagingSource(
                 val responseData = response.body()
 
                 LoadResult.Page(
-                    data = responseData!!.results,
+                    data = responseData?.results ?: emptyList(),
                     prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
-                    nextKey = if (position == responseData.totalPages) null else position + 1
+                    nextKey = if (position == responseData?.totalPages) null else position + 1
                 )
             } else {
                 LoadResult.Error(ResponseErrorException("Code ${response.code()}: ${response.message()}"))

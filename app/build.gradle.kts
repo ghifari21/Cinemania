@@ -1,27 +1,28 @@
 import Config.importCommonDependencies
 import Config.importCommonPlugins
+import Config.importComposeDependencies
 
 plugins {
     id(Plugins.application)
+    id(Plugins.googleServices)
     id(Plugins.kotlin)
     kotlin(Plugins.kapt)
 }
 
 importCommonPlugins()
 importCommonDependencies()
+importComposeDependencies()
 
 android {
     namespace = "com.gosty.cinemania"
-    compileSdk = Config.sdk
+    compileSdk = Config.compileSdk
 
     defaultConfig {
         applicationId = "com.gosty.cinemania"
         minSdk = Config.minSdk
-        targetSdk = Config.sdk
+        targetSdk = Config.targetSdk
         versionCode = Config.versionCode
         versionName = Config.versionName
-
-        buildConfigField("String", "IMAGE_BASE_URL", Config.IMAGE_BASE_URL)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -62,23 +63,16 @@ android {
 dependencies {
     implementation(Dependencies.lifecycleRuntimeKtx)
     implementation(Dependencies.lifecycleViewModelKtx)
-    implementation(Dependencies.coil)
 
     // Modules
     implementation(project(Modules.domain))
-
-    // Compose
-    implementation(platform(Dependencies.Compose.compose))
-    implementation(Dependencies.Compose.activity)
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.navigation)
-    implementation(Dependencies.Compose.material3)
-    implementation(Dependencies.Compose.uiGraphics)
-    implementation(Dependencies.Compose.uiToolingPreview)
-    debugImplementation(Dependencies.Compose.uiTooling)
-    debugImplementation(Dependencies.Compose.uiTestManifest)
-    implementation(Dependencies.Hilt.hiltNavigationCompose)
-    implementation(Dependencies.Paging.compose)
+    implementation(project(Modules.model))
+    implementation(project(Modules.common))
+    implementation(project(Modules.home))
+    implementation(project(Modules.detail))
+    implementation(project(Modules.explore))
+    implementation(project(Modules.favorite))
+    implementation(project(Modules.profile))
 
     // Firebase
     implementation(Dependencies.Firebase.crashlytics)

@@ -12,7 +12,7 @@ importCommonDependencies()
 
 android {
     namespace = "com.gosty.core.data"
-    compileSdk = Config.sdk
+    compileSdk = Config.compileSdk
 
     defaultConfig {
         minSdk = Config.minSdk
@@ -45,7 +45,11 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.domain))
+    // Modules
+    implementation(project(Modules.model))
+    implementation(project(Modules.response))
+    implementation(project(Modules.entity))
+    implementation(project(Modules.common))
 
     implementation(Dependencies.Retrofit.retrofit)
     implementation(Dependencies.Retrofit.gson)

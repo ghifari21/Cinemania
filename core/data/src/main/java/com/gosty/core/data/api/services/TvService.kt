@@ -1,8 +1,8 @@
 package com.gosty.core.data.api.services
 
-import com.gosty.core.data.api.responses.general.GeneralResponse
-import com.gosty.core.data.api.responses.tv.TvDetailResponse
-import com.gosty.core.data.api.responses.tv.TvPreviewResponse
+import com.gosty.response.general.GeneralResponse
+import com.gosty.response.tv.TvDetailResponse
+import com.gosty.response.tv.TvPreviewResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
